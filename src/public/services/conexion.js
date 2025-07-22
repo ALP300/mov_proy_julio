@@ -22,3 +22,15 @@ export async function conectar() {
         throw error;
     }
 }
+export async function ConsultarPeliculas() {
+    const cliente = await conectar();
+    try {
+        const res = await cliente.query('SELECT * FROM peliculas');
+        return res.rows;
+    } catch (error) {
+        console.error('Error al consultar las películas:', error);
+        throw error;
+    } finally {
+        await cliente.end();
+    }
+}
