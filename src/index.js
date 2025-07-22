@@ -2,6 +2,7 @@ import express from 'express'
 import {dirname, join} from 'path'
 import {fileURLToPath} from 'url'
 import router from './routes/index.js'
+import { conectar  } from './public/services/conexion.js'
 
 const app= express()
 
@@ -11,6 +12,7 @@ app.set('view engine', 'ejs')
 app.get('/', (req, res) => {
   res.render('index', {title: 'Home'})
 })
+conectar()
 app.use(router)
 
 app.listen(3000)
